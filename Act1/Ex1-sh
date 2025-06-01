@@ -1,0 +1,26 @@
+#!/bin/bash
+
+read -p 'Introduce directory or file: ' input
+
+if [[ ! -e $input ]]; then
+        echo "The file or directory you entered doesn't exist"
+        exit 1
+fi
+
+echo "The directory or file exists"
+
+if [[ -f $input ]]; then
+        Allines=$(wc -l < "$input")
+        echo "Lines: $Allines"
+else
+        echo "'$input' is not a file, so line count will not work."
+fi
+
+read -p "Do you want to create a file: Y/N " answer
+
+if [[ $answer == [Yy] ]]; then
+        read -p "Enter the name of the new file: " newfile
+        touch "$newfile"
+        echo "File '$newfile' created successfully."
+fi
+
